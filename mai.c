@@ -30,7 +30,7 @@ void * bidir(t_funcion funcion, void * arreglo, int num) {
 
 
 
-void * recorre(void * arreglo, t_iterador iterador, size_t tamaño, int numElem) {
+void * recorre(void * arreglo, t_iterador iterador, size_t tamaÃ±o, int numElem) {
 	int opcion = 0;
 	void * curr;
 	while (opcion >= 0) {
@@ -43,19 +43,19 @@ void * recorre(void * arreglo, t_iterador iterador, size_t tamaño, int numElem) 
 		case(1) :
 			curr = arreglo;
 		case(2) :
-			curr = &arreglo + (tamaño * (numElem - 1));
+			curr = &arreglo + (tamaÃ±o * (numElem - 1));
 		case(3) :
 			if (&iterador != &forward || &iterador != &bidir) {
 				printf("Este iterador no cuenta con esa funcionalidad");
 				break;
 			}
-				curr = next(arreglo, tamaño);
+				curr = next(arreglo, tamaÃ±o);
 		case(4) :
 			if (&iterador != &prev || &iterador != &bidir) {
 				printf("Este iterador no cuenta con esa funcionalidad");
 				break;
 			}
-				curr = prev(arreglo, tamaño);
+				curr = prev(arreglo, tamaÃ±o);
 		default:
 			opcion = -1;
 		}
