@@ -1,5 +1,5 @@
 #include <stdlib.h>
-
+#include <stdio.h>
 
 typedef void * (*t_funcion)(size_t, void *);
 typedef void * (*t_iterador)(t_funcion, void *, int);
