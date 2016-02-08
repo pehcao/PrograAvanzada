@@ -27,6 +27,7 @@ int main(int argc, const char * argv[])
         }else{
             int promedio = (getpid() + getppid()) / 2;
             printf("Hijo %d \n Promedio: %d \n", getpid(), promedio);
+            free(hijos);
             exit(0);
         }
     }
@@ -36,6 +37,7 @@ int main(int argc, const char * argv[])
         id = waitpid(*(hijos + i),&status,0);
         printf("Hijo %d acaba de terminar \n", id);
     }
+    free(hijos);
     printf("Todos los hijos terminaron, terminando ejecucion del programa \n");
     return 0;
 }
