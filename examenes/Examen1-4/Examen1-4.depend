@@ -1,7 +1,0 @@
-# depslib dependency file v1.0
-1455554810 source:/home/pehcao/Desktop/PA/git/examenes/Examen1-4/main.c
-	<stdio.h>
-	<stdlib.h>
-	<unistd.h>
-	<sys/wait.h>
-
