@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1456983589 source:/home/pehcao/Desktop/PA/git/tareas/tarea2/tarea3/main.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<signal.h>
+
+1456986538 source:/home/pehcao/Desktop/PA/git/tareas/tarea3/main.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<signal.h>
+
