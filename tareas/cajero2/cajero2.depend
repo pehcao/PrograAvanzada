@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1459060841 source:/home/pehcao/Desktop/PA/git/tareas/cajero2/main.c
+	<stdio.h>
+	<pthread.h>
+	<stdlib.h>
+
