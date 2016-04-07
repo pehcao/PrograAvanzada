@@ -7,7 +7,7 @@ typedef struct cajero{
     int atendidos;
     int id;
     pthread_mutex_t atendiendo;
-}cajero;
+};
 
 time_t t;
 
