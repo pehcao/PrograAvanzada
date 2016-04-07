@@ -13,26 +13,26 @@ int tabProducido = 0;
 int papProducido = 0;
 int fosfProducido = 0;
 
-int tabEnMesa = 0;
-int papEnMesa = 0;
-int fosfEnMesa = 0;
+int tabEnMesa;
+int papEnMesa;
+int fosfEnMesa;
 
 
 void * agente(void *p){
     while(1){
         if(tabProducido && !tabEnMesa){
-            tabProducido--;
-            tabEnMesa++;
+            tabProducido= 0;
+            tabEnMesa = 1;
             printf("Ya hay tabaco \n");
         }
         if(papProducido && !papEnMesa){
-            papProducido--;
-            papEnMesa++;
+            papProducido= 0;
+            papEnMesa = 1;
             printf("Ya hay papel \n");
         }
         if(fosfProducido && !fosfEnMesa){
-            fosfProducido--;
-            fosfEnMesa++;
+            fosfProducido = 0;
+            fosfEnMesa = 1;
             printf("Ya hay fosforos \n");
         }
         printf("Agente haciendo otras actividades \n");
@@ -45,8 +45,11 @@ void * agente(void *p){
 void * fumarTab(void * p){
     int fumando = 0;
     time_t espera = 0;
+    tabEnMesa = 0;
+    tabProducido = 0;
     int printed= 1;
     while(1){
+            sleep(1);
         if(time(NULL) < espera){
             if (tabProducido == 0){
                 tabProducido = 1;
@@ -67,7 +70,7 @@ void * fumarTab(void * p){
                 pthread_mutex_lock(&mutPapel);
                 sleep(1);
                 if(papEnMesa){
-                        printf("Hay papel \n");
+                    printf("Hay papel \n");
                     pthread_mutex_lock(&mutFosf);
                     sleep(1);
                     if(fosfEnMesa){
@@ -105,9 +108,12 @@ void * fumarTab(void * p){
 
 void *fumarPap(void *p){
     int fumando = 0;
+    papEnMesa = 0;
+    papProducido = 0;
     time_t espera = 0;
     int printed= 1;
     while(1){
+            sleep(1);
         if(time(NULL) < espera){
             if (papProducido == 0){
                 papProducido = 1;
@@ -119,9 +125,9 @@ void *fumarPap(void *p){
                 printf("Productor de papel ya puede fumar de nuevo \n");
                 printed = 1;
             }
-            if (tabProducido == 0){
-                tabProducido = 1;
-                printf("Produje tabaco \n");
+            if (papProducido == 0){
+                papProducido = 1;
+                printf("Produje papel \n");
                 }
             pthread_mutex_lock(&mutTabaco);
              if(tabEnMesa){
@@ -161,7 +167,6 @@ void *fumarPap(void *p){
                     espera = time(NULL) + 4;
                 }
             }
-        }
     }
     pthread_exit(NULL);
 }
@@ -169,8 +174,11 @@ void *fumarPap(void *p){
 void *fumarFosf(void *p){
     int fumando = 0;
     time_t espera = 0;
+    fosfProducido = 0;
+    fosfEnMesa = 0;
     int printed= 1;
     while(1){
+            sleep(1);
         if(time(NULL) < espera){
             if (fosfProducido == 0){
                 fosfProducido = 1;
@@ -181,9 +189,9 @@ void *fumarFosf(void *p){
                 printf("Productor de fosforos ya puede fumar de nuevo \n");
                 printed = 1;
             }
-            if (tabProducido == 0){
-                tabProducido = 1;
-                printf("Produje tabaco \n");
+            if (fosfProducido == 0){
+                fosfProducido = 1;
+                printf("Produje fosforos \n");
                 }
             pthread_mutex_lock(&mutTabaco);
              if(tabEnMesa){
@@ -222,11 +230,11 @@ void *fumarFosf(void *p){
                     printf("Productor de fosforos regreso de fumar \n");
                     espera = time(NULL) + 4;
                 }
-            }
         }
     }
     pthread_exit(NULL);
 }
+
 
 
 int main()
