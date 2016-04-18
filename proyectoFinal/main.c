@@ -15,7 +15,6 @@ int main()
             datos[i][0] /= 10000;
             datos[i][1] =  (rand()%10000);
             datos[i][1] /= 10000;
-            printf("%f \n", datos[i][0]);
     }
     int preC1 = rand() % 4999;
     int preC2 = rand() % 4999;
@@ -36,7 +35,13 @@ int main()
     float sumaC1[2];
     float sumaC2[2];
 
+
     while(diffC1 > 0.0001 && diffC2 > 0.0001){
+        sumaC1[0] = 0;
+        sumaC1[1] = 0;
+
+        sumaC2[0] = 0;
+        sumaC2[1] = 0;
         #pragma omp parallel for
         for(int i = 0; i < max; i++){
             float distC1 = (datos[i][0]-c1[0])/(datos[i][1] - c1[1]);
@@ -54,7 +59,7 @@ int main()
         c2Ant[0] = c2[0];
         c2Ant[1] = c2[1];
 
-        c1[0] = sumaC1[0] /max;
+        c1[0] = sumaC1[0] / max;
         c1[1] = sumaC1[1] / max;
         c2[0] = sumaC2[0] / max;
         c2[1] = sumaC2[1] / max;
